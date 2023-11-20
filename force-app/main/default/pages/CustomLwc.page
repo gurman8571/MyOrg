@@ -1,0 +1,27 @@
+<apex:page >    
+    <!-- This loads the JavaScript file needed to use Lightning Components for Visualforce-->  
+    <style type = "text/css">
+        
+    </style>
+    <apex:includeLightning />    
+    <!-- div tag act as locator while calling Lightning.createComponent -->    
+    <div id="container" style="text-align:center; margin-left:10px;margin-right:10px;"></div>  
+    
+    <script>  
+    var recordId = '{!$CurrentPage.parameters.id}';
+    console.log('recordId' + recordId);
+    
+                
+
+    $Lightning.use("c:BankVerification", function() { 
+        $Lightning.createComponent("c:BankVerificationComponent"
+          ,{recordId: recordId},
+          "container",
+          function(cmp) {
+              console.log('LWC Component added in VF page');
+          });      
+    }); 
+        
+    </script> 
+    
+</apex:page>

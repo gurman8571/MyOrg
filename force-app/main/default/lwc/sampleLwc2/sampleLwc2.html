@@ -1,0 +1,75 @@
+<template>
+    <lightning-button variant="brand" label="new"
+                        title="New" onclick={showModalBox}>
+    </lightning-button>    
+   <template if:true={isShowModal}>
+
+           
+
+    <section  role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+       <div style="max-width: 87rem; width:100%;" class="slds-modal__container">
+        <!-- modal header start -->
+          <header class="slds-modal__header">
+             <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={hideModalBox}>
+                <lightning-icon icon-name="utility:close"
+                   alternative-text="close"
+                   variant="inverse"
+                   size="small" ></lightning-icon>
+                <span class="slds-assistive-text">Close</span>
+             </button>
+             <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Document Insight Template</h2>
+          </header>
+      
+          <!-- modal body start -->
+          <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+           
+               <template if:false={Step1_complete}>
+                   <b>Instructions:</b>
+                   <ul class="slds-m-around_medium" style="list-style-type: disc;">
+                       <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. </li>
+                       <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                       <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
+                   </ul>
+                   <div class="slds-m-around_medium">
+       
+       
+       
+                       <lightning-combobox name="Source Object" label="Source Object" placeholder="Select Object"
+                           options={objects}  onchange={SelectObject}  required></lightning-combobox>
+       
+                       <lightning-input required type="text" label="Template name" id="TemplateName"  onchange={setTemplateName} value=""></lightning-input>
+       
+                       <lightning-file-upload label="Attach receipt" name="fileUploader" onchange={handleFileChange} accept={acceptedFormats}
+                             multiple>
+                       </lightning-file-upload>
+       
+       
+                   </div>
+               </template>
+               <template if:true={Step1_complete}>
+                <c-table  templatename={Templatename} selectedobject={SelectedObject} ></c-table>
+
+                 
+               </template>
+     
+          </div>
+
+          <!-- modal footer start-->
+          <footer class="slds-modal__footer">
+            <template if:false={Step1_complete}>
+                <lightning-button variant="brand" label="Next" data-id="Step1"  title="Next" onclick={handleClick}
+                class="slds-m-left_x-small"></lightning-button>
+            </template> 
+            <template if:true={Step1_complete}>
+                <lightning-button variant="brand" data-id="Step2" onclick={handleClick} label="Save" title="Next"
+                class="slds-m-left_x-small"></lightning-button>
+            </template> 
+                 </footer>
+       
+       </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+ </template>
+ <!-- modal end -->
+
+</template>

@@ -1,0 +1,181 @@
+<template>
+   <template if:false={isAlternate}> <div data-id={item.sPossibleKey} class='grid-container2' style="background-color:#F8F8F8">
+  
+    <div class="grid-tem" style="margin: 10px 10px 10px 20px; cursor: pointer;">
+    <lightning-icon icon-name='utility:key'  class='green-utility-icon' data-id={item.sPossibleKey} onclick={AddKey} size='x-small' title='add'></lightning-icon>  
+    <lightning-icon icon-name="utility:delete"   size='x-small' onclick={ConfirmDelete} class='red-utility-icon' style="padding-left:5px;" title='delete'></lightning-icon>
+     </div>
+    
+  
+    <div class="grid-item" style="text-align:start">{item.sPossibleKey}</div>
+     <div class="grid-item">
+        <template if:true={item.isParent}>
+
+     <lightning-combobox name="Mapping field" style="text-align: left;" data-id={item.sPossibleKey}
+         placeholder="Select a field" class="custom-combobox-label" variant="label-hidden" options={parentfeilds}
+         onchange={SelectMappingFeild} value={parentfeild} >
+     </lightning-combobox>
+   
+        </template>
+        <template if:false={item.isParent}>
+         
+         <lightning-combobox name="Mapping field" style="text-align: left;" data-id={item.sPossibleKey}
+         placeholder="Select a field" class="custom-combobox-label" variant="label-hidden" options={parentfeilds}
+         onchange={SelectMappingFeild} value={item.sFieldAPIName}>
+     </lightning-combobox>
+        </template>
+     </div>
+
+    
+  
+
+
+     <div class="grid-item "  style="margin-left:15px;" data-id={item.sPossibleKey}>
+         <template if:true={item.isParent}>
+
+             <lightning-combobox name="Source Object" style="text-align: left;" data-id={item.sPossibleKey}
+                 onchange={ChangeParentFeild} options={options} placeholder="Select Parent feild"
+                 variant="label-hidden" value={item.sFieldAPIName}>
+             </lightning-combobox>
+         </template>
+         <template if:false={item.isParent}>
+
+             -
+         </template>
+     </div>
+    
+     <div class="grid-item " style="margin-left:15px;">
+        <template lwc:if={showPicklist}>
+
+            <lightning-combobox name="Source Object" style="text-align: left;" class={item.sPossibleKey} data-id={item.sPossibleKey}
+                options={options2} onchange={ChangePicklistFeild} placeholder="Select Picklist feild"
+                 value={item.sPicklistValue}
+                variant="label-hidden">
+            </lightning-combobox>
+        </template>
+        <template lwc:elseif={parentshowPicklist}>
+
+            <lightning-combobox name="Source Object" style="text-align: left;" class={item.sPossibleKey} data-id={item.sPossibleKey}
+                options={options2} onchange={ChangePicklistFeild} placeholder="Select Picklist feild"
+                 value={item.sPicklistValue}
+                variant="label-hidden">
+            </lightning-combobox>
+        </template>
+        <template lwc:else>
+
+            -
+        </template>
+
+    </div>
+     <template if:true={error}> <p style="color:red;font-weight:500;margin-left:10px;">{error}</p></template>
+ </div></template>
+   <template if:true={isAlternate}> <div data-id={item.sPossibleKey} class='grid-container2'>
+    <div class="grid-tem" style="margin: 10px 10px 10px 20px; cursor: pointer;">
+        <lightning-icon icon-name='utility:key'   class='green-utility-icon' data-id={item.sPossibleKey} onclick={AddKey} size='x-small' title='add'></lightning-icon>  
+        <lightning-icon icon-name="utility:delete"   size='x-small' onclick={ConfirmDelete}  style="padding-left:5px;" class='red-utility-icon' title='delete'></lightning-icon>
+         </div>
+   
+    <div class="grid-item"  style="text-align:start">{item.sPossibleKey}</div>
+     <div class="grid-item">
+        <template if:true={item.isParent}>
+
+     <lightning-combobox name="Mapping field" style="text-align: left;" data-id={item.sPossibleKey}
+         placeholder="Select a field" class="custom-combobox-label" variant="label-hidden" options={parentfeilds}
+         onchange={SelectMappingFeild} value={parentfeild} >
+     </lightning-combobox>
+   
+        </template>
+        <template if:false={item.isParent}>
+         
+         <lightning-combobox name="Mapping field" style="text-align: left;" data-id={item.sPossibleKey}
+         placeholder="Select a field" class="custom-combobox-label" variant="label-hidden" options={parentfeilds}
+         onchange={SelectMappingFeild} value={item.sFieldAPIName}>
+     </lightning-combobox>
+        </template>
+     </div>
+     
+    
+    
+
+
+     <div class="grid-item " data-id={item.sPossibleKey} style="margin-left:15px;">
+         <template if:true={item.isParent}>
+
+             <lightning-combobox name="Source Object" style="text-align: left;" data-id={item.sPossibleKey}
+                 onchange={ChangeParentFeild} options={options} placeholder="Select Parent feild"
+                 variant="label-hidden" value={item.sFieldAPIName}>
+             </lightning-combobox>
+         </template>
+         <template if:false={item.isParent}>
+
+             -
+         </template>
+     </div>
+    
+     <div class="grid-item " style="margin-left:15px;">
+        <template lwc:if={showPicklist}>
+
+            <lightning-combobox name="Source Object" style="text-align: left;" class={item.sPossibleKey} data-id={item.sPossibleKey}
+                options={options2} onchange={ChangePicklistFeild} placeholder="Select Picklist feild"
+                 value={item.sPicklistValue}
+                variant="label-hidden">
+            </lightning-combobox>
+        </template>
+        <template lwc:elseif={parentshowPicklist}>
+
+            <lightning-combobox name="Source Object" style="text-align: left;" class={item.sPossibleKey} data-id={item.sPossibleKey}
+                options={options2} onchange={ChangePicklistFeild} placeholder="Select Picklist feild"
+                 value={item.sPicklistValue}
+                variant="label-hidden">
+            </lightning-combobox>
+        </template>
+        <template lwc:else>
+
+            -
+        </template>
+
+    </div>
+     <template if:true={error}> <p style="color:red;font-weight:500;margin-left:10px;">{error}</p></template>
+ </div></template>
+  
+    <template if:true={isShowModal}>
+
+           
+
+        <section  role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+           <div  class="slds-modal__container">
+            <!-- modal header start -->
+              <header class="slds-modal__header">
+                 <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={hideModalBox}>
+                    <lightning-icon icon-name="utility:close"
+                       alternative-text="close"
+                       variant="inverse"
+                       size="small" ></lightning-icon>
+                    <span class="slds-assistive-text">Close</span>
+                 </button>
+                 <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Add Key</h2>
+              </header>
+          
+              <!-- modal body start -->
+              <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+                <b>Instructions:</b>
+                   <ul class="slds-m-around_medium" style="list-style-type: disc;">
+                       <li>Please Insert Comma Seperated Values</li>
+                       
+                   </ul>
+                <lightning-input required type="text" label="Add key" onchange={ChangeKey} value={item.sPossibleKey}></lightning-input>
+       
+         
+              </div>
+    
+              <!-- modal footer start-->
+              <footer class="slds-modal__footer">
+                <lightning-button variant="brand"  onclick={handleClick} label="Save" title="Next"
+                class="slds-m-left_x-small"></lightning-button>
+                     </footer>
+           
+           </div>
+        </section>
+        <div class="slds-backdrop slds-backdrop_open"></div>
+     </template>
+</template>

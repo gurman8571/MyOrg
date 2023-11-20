@@ -1,0 +1,61 @@
+<template>
+   
+    <template if:false={Step1_complete}>
+ 
+    <div style="border: 1.5px solid gray; /* Add a 1px solid black border */
+    
+    padding: 10px;">
+    
+    <lightning-card>
+        <h3 slot="title">
+            Document Insight Template
+        </h3>
+        <div slot="footer">
+          
+                <lightning-button variant="brand" label="Next" data-id="Step1"  title="Next" onclick={handleClick}
+                class="slds-m-left_x-small"></lightning-button>
+            
+            
+        </div>
+        <p class="slds-p-horizontal_small" style="height:350px; margin-top:40px;">  <template if:false={Step1_complete}>
+            <b>Instructions:</b>
+            <ul class="slds-m-around_medium" style="list-style-type: disc;">
+               <li>Please Select the source object.</li>
+               <li>Please enter a valid template name. </li>
+                <li>Please upload a document in PDF format.</li>
+            </ul>
+            <div class="slds-m-around_medium">
+
+ <template if:true={error}> <p style="color:red;font-weight:500">{error}</p></template>
+
+                <lightning-combobox style="margin-bottom:7px;" name="Source Object" label="Source Object" placeholder="Select Object"
+                    options={objects}  onchange={SelectObject}  required></lightning-combobox>
+
+                <lightning-input style="margin-bottom:10px;" type="text" label="Template name" placeholder="Enter a Template Name" id="TemplateName"  onchange={setTemplateName} value="" required></lightning-input>
+
+           
+                <lightning-file-upload
+                label="Upload Document"
+                name="fileUploader"
+                accept={acceptedFormats}
+                onuploadfinished={handleFileChange}
+                required
+
+            >
+            </lightning-file-upload>
+
+
+            </div>
+        </template>
+       </p>
+    </lightning-card></div>
+    </template>
+ 
+    <template if:true={Step1_complete}>
+     <c-table  templatename={Templatename} recordid={recordid} selectedobject={SelectedObject} ></c-table>
+ 
+        
+  
+    </template>
+      
+ </template>

@@ -1,0 +1,47 @@
+.customInput .slds-input{
+    border: 1px solid #C9C9C9;
+ }
+ .grid-container {
+  display: grid;
+    grid-template-columns: 100px 260px 350px 350px 150px;
+    color: white;
+    border-radius: 4px;
+    margin-bottom: 7px;
+    padding:5px;
+    background-image: linear-gradient(#009cdb, #2073be);
+    
+   
+  }
+  .grid-container2 {
+    display: grid;
+    grid-template-columns: 100px 200px 150px 120px 150px 150px 150px 150px;
+    border-radius: 10px;
+    margin-bottom: 7px;
+    border: 1px solid #C9C9C9;
+   
+   
+  }
+  .grid-container2:nth-child(2) {
+    background: lightgreen;
+  }
+  
+  .grid-item {
+  
+    
+    padding: 10px;
+    
+    text-align: center;
+  }
+  .grid-item1 {
+  
+    
+    padding: 4px 20px 4px  20px;
+    font-weight: 900;
+    
+    text-align: center;
+  }
+
+  .custom-combobox-label {
+ 
+    padding: 0;   /* Remove padding to minimize space */
+ }

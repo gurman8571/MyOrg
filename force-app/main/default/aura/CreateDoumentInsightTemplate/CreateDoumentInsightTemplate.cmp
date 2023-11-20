@@ -1,0 +1,4 @@
+<aura:component description="overrideStandardButtonExample" implements="lightning:actionOverride">
+   
+   <c:sampleLwx />
+</aura:component>

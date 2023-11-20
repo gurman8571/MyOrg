@@ -1,0 +1,10 @@
+<aura:component implements="force:appHostable,flexipage:availableForAllPageTypes,flexipage:availableForRecordHome,force:hasRecordId,forceCommunity:availableForAllPageTypes,force:lightningQuickAction" access="global" >
+    <aura:html tag="style">
+        .slds-modal__container{
+	width: 80% !important;
+	max-width: 80% !important;
+}
+    </aura:html>
+    <aura:handler event="force:refreshView" action="{!c.isRefreshed}" />
+    <c:table recordId="{!v.recordId}" />
+</aura:component>

@@ -1,0 +1,40 @@
+.green-utility-icon {
+    --sds-c-icon-color-foreground-default: #49A54C;
+}
+.red-utility-icon {
+    --sds-c-icon-color-foreground-default: #CB0015;
+}
+.gray-utility-icon {
+    --sds-c-icon-color-foreground-default: #BEBEBE;
+}
+.blue-utility-icon {
+    --sds-c-icon-color-foreground-default: blue;
+}
+.green-non-utility-icon {
+    --sds-c-icon-color-foreground: #49A54C;
+}
+.red-non-utility-icon {
+    --sds-c-icon-color-foreground: #CB0015;
+}
+.gray-non-utility-icon {
+    --sds-c-icon-color-foreground: #BEBEBE;
+}
+.blue-non-utility-icon {
+    --sds-c-icon-color-foreground: blue;
+}
+.green-background-icon{
+--sds-c-icon-color-background: #49A54C;
+    padding: 0.3rem;
+}
+.red-background-icon{
+--sds-c-icon-color-background: #CB0015;
+    padding: 0.3rem;
+}
+.blue-background-icon{
+--sds-c-icon-color-background: blue;
+    padding: 0.3rem;
+}
+.gray-background-icon{
+--sds-c-icon-color-background: #BEBEBE;
+    padding: 0.3rem;
+}

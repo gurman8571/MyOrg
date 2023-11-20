@@ -1,0 +1,5 @@
+<aura:component description="overrideStandardButtonExample" implements="lightning:actionOverride">
+   
+
+
+</aura:component>

@@ -1,0 +1,58 @@
+.grid-container {
+  display: grid;
+  grid-template-columns: 70px 220px 150px 120px 150px 150px 150px 200px;
+  background-image: linear-gradient(#009cdb, #2073be);
+  color: white;
+  border-radius: 10px;
+  margin-bottom: 7px;
+  margin-right: 100px;
+  margin-left: 100px;
+   
+  }
+  .green-utility-icon {
+    --sds-c-icon-color-foreground-default: #49A54C;
+}
+.red-utility-icon {
+    --sds-c-icon-color-foreground-default: #CB0015;
+}
+  .grid-container2 {
+    display: grid;
+    grid-template-columns:120px 310px  300px 300px 300px;
+    border-radius: 5px;
+    border: 1px solid #C9C9C9;
+  }
+  
+  .Add-icon svg {
+   fill:red;
+}
+
+/* Remove background color and set red color for the "delete" icon */
+.delete-icon {
+    --sds-c-icon-color-background: transparent; /* Remove background color */
+    color: red; /* Set red color for the icon */
+}
+  .alternate {
+    background: lightgreen;
+  }
+  .grid-item {
+  
+    
+    padding: 6px;
+    
+    text-align: center;
+  }
+  .grid-item1 {
+  
+    
+    padding: 4px 20px 4px  20px;
+    font-weight: 900;
+    
+    text-align: center;
+  }
+  .custom-combobox-label {
+ 
+    padding: 0;   /* Remove padding to minimize space */
+ }
+ @media only screen and (max-width: 800px) {
+  
+}

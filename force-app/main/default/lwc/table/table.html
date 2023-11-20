@@ -1,0 +1,59 @@
+<template>
+ 
+  <div style="border:1.5px solid gray"><lightning-card>
+    <h3 slot="title">
+      
+        Document Insight Template
+    </h3>
+    <div slot="footer">
+       
+  
+            <lightning-button variant="brand" data-id="Step2" onclick={handleClick} label="Save" title="Next"
+            class="slds-m-left_x-small"></lightning-button>
+     
+    </div>
+  
+    <template if:true={showSpinner}>
+      <div class="" style="width:300px; height:400px;">
+          <div class="slds-spinner slds-spinner_medium slds-spinner_brand">
+              <div class="slds-spinner__dot-a"></div>
+              <div class="slds-spinner__dot-b"></div>
+          </div>
+      </div>
+    
+    </template>
+    <template if:false={showSpinner}>
+      <div class="slds-m-around_medium">
+        <div style="margin-bottom: 3px; display: flex; background-color:#E7F4FB;padding:6px;border-radius:10px;border:0.5px dashed blue"> 
+          <div style="margin: 20px;margin-left: 20px;"><span style="font-weight:700">Source Object</span>  <p>{selectedobject}</p></div>
+          <div style="margin: 20px;margin-left: 20px;"><span style="font-weight:700">Template Name</span>  <p>{templatename}</p></div>
+               
+             </div>
+         <template if:true={error}> <p style="color:red;font-weight:500">{error}</p></template>
+         <p style="padding-top: 3px; padding-bottom:3px;">Mapping:</p>
+           
+               <div class="grid-container">
+                   <div class="grid-item1">Actions</div>
+                   <div class="grid-item1">Key</div>
+                   <div class="grid-item1">Mapping Field</div>
+                   <div class="grid-item1">Parent Field</div>
+                   <div class="grid-item1">Picklist value</div>
+                  
+                  
+                  
+                 </div>
+             
+                 <template for:each={keyvaluepair}  for:item="item" >
+                   <c-child key={item.key} ondeletekey={handleDelete}  onupdateparent={handleData}  picklistvalues={PicklistValuesMap} item={item} parentfeilds={objectinfo} parentinfo={objectfeilds} selectedobject={selectedobject} finalresp={keyvaluepair} ></c-child>
+               </template>
+         
+               
+           
+              <div class="slds-m-around_medium">
+            
+           </div>
+      </div>
+    
+    </template>
+  </lightning-card></div>
+    </template>

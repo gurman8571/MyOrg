@@ -1,0 +1,167 @@
+<template>
+    <lightning-card  title="Hello">
+        <lightning-button label="New" slot="actions"></lightning-button>
+        <p class="slds-p-horizontal_small">Card Body (custom component)</p>
+        <p slot="footer">Card Footer</p>
+    </lightning-card>  
+   <template if:true={isShowModal}>
+
+           
+
+    <section  role="dialog" tabindex="-1" aria-labelledby="modal-heading-01" aria-modal="true" aria-describedby="modal-content-id-1" class="slds-modal slds-fade-in-open">
+       <div style="max-width: 85rem; width:100%;" class="slds-modal__container">
+        <!-- modal header start -->
+          <header class="slds-modal__header">
+             <button class="slds-button slds-button_icon slds-modal__close slds-button_icon-inverse" title="Close" onclick={hideModalBox}>
+                <lightning-icon icon-name="utility:close"
+                   alternative-text="close"
+                   variant="inverse"
+                   size="small" ></lightning-icon>
+                <span class="slds-assistive-text">Close</span>
+             </button>
+             <h2 id="modal-heading-01" class="slds-text-heading_medium slds-hyphenate">Document Insight Template</h2>
+          </header>
+      
+          <!-- modal body start -->
+          <div class="slds-modal__content slds-p-around_medium" id="modal-content-id-1">
+           
+               <template if:false={Step1_complete}>
+                   <b>Instructions:</b>
+                   <ul class="slds-m-around_medium" style="list-style-type: disc;">
+                       <li>Lorem ipsum, dolor sit amet consectetur adipisicing elit. </li>
+                       <li>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</li>
+                       <li>Lorem ipsum dolor sit amet consectetur adipisicing elit. </li>
+                   </ul>
+                   <div class="slds-m-around_medium">
+       
+       
+       
+                       <lightning-combobox name="Source Object" label="Source Object" placeholder="Select Object"
+                           options={objects}  onchange={SelectObject}  required></lightning-combobox>
+       
+                       <lightning-input required type="text" label="Template name" id="TemplateName"  onchange={setTemplateName} value=""></lightning-input>
+       
+                       <lightning-file-upload label="Attach receipt" name="fileUploader" onchange={handleFileChange} accept={acceptedFormats}
+                             multiple>
+                       </lightning-file-upload>
+       
+       
+                   </div>
+               </template>
+               <template if:true={Step1_complete}>
+       
+                   <div class="slds-m-around_medium">
+                     <div style="margin-bottom: 3px;display:flex;"> 
+                     <lightning-input type="text" label="Source Object:" class="customInput"  value={SelectedObject} readonly></lightning-input>
+                        <lightning-input type="text" label="Template Name:"   class="customInput" value={Templatename}  readonly></lightning-input>
+                      </div>
+                      <p style="padding-top: 3px; padding-bottom:3px;">Mapping:</p>
+                           <div>
+                            <div class="grid-container">
+                               
+                                <div class="grid-item1">Key</div>
+                                <div class="grid-item1">Mapping Feild</div>
+                                <div class="grid-item1">Data Type</div>
+                                <div class="grid-item1">PickList Value</div>
+                                <div class="grid-item1">Parent Feild</div>
+                                <div class="grid-item1">Data Type</div>
+                                <div class="grid-item1">Picklist value</div>
+                               
+                               
+                               
+                              </div>
+                             <div  style="height:300px;overflow: hidden;overflow-y: scroll;">
+                              <template for:each={KeyValuePair}  for:item="item" >
+                                <div key={item}     class="grid-container2">
+                                     <div class="grid-item" >{item.key}</div>
+                                    <div class="grid-item"> 
+                                        <lightning-combobox name="Mapping feild" 
+                                        style="text-align: left;"
+                                        data-id={item.key}
+                                        placeholder="Select a feild"
+                                        class="custom-combobox-label"
+                                        variant = "label-hidden"
+                                        options={ObjectInfo} onchange={SelectMappingFeild} >
+                                    </lightning-combobox>
+                    </div>
+                                    <div class="grid-item" id={item.key}>
+                                        
+                                </div>
+    
+                                <div class="grid-item "> 
+                                 <lightning-combobox name="Source Object"
+                                 style="text-align: left;"
+                                    class={item.key}
+                                    data-id={item.key}
+                                    id={item.UniqueId1}    
+                                    onchange={ChangePicklistFeild}
+                                    placeholder="Select Picklist feild"
+                                   
+                                    variant = "label-hidden"
+                                    disabled >
+                                </lightning-combobox></div>
+                                   
+                                   
+                                  
+                                  <div class="grid-item " data-id={item.key} id={item.Parent1Id}> 
+                                    <lightning-combobox name="Parent feild" 
+                                        data-id={item.key}
+                                        style="display:none;text-align: left;"
+                                        placeholder="Select a feild"
+                                        class="custom-combobox-label"
+                                        variant = "label-hidden"
+                                        onchange={ChangeParentFeild}
+                                         >
+                                    </lightning-combobox> </div>
+                                  <div class="grid-item " data-id={item.key} id={item.Parent2Id}>  </div>
+                                  <div class="grid-item " data-id={item.key} id={item.Parent3Id}>  
+                                 <lightning-combobox name="Source Object"
+                                 style="display:none;text-align: left;"
+                                    class={item.key}
+                                    data-id={item.key}
+                                    id={item.UniqueId1}    
+                                    onchange={ChangePicklistFeild}
+                                    placeholder="Select Picklist feild"
+                                   options={options2}
+                                    variant = "label-hidden"
+                                    disabled > </lightning-combobox></div>
+                                      
+                                     </div>
+                            </template>
+                        </div>
+                            
+                           </div>
+                           <div class="slds-m-around_medium">
+                            <lightning-input type="checkbox" data-id="condition1" checked={condition1}
+                                onchange={handleTermsChange} 
+                                label="Do you want to link record to parent">
+                            </lightning-input>
+                            <template if:true={condition1}>
+                                <lightning-combobox style="margin-top:5px;" name="Select Parent" label="Select Parent" placeholder="Select Parent"
+                                options={options} data-id="SelectParent" ></lightning-combobox>
+                            </template>
+                        </div>
+                   </div>
+               </template>
+     
+          </div>
+
+          <!-- modal footer start-->
+          <footer class="slds-modal__footer">
+            <template if:false={Step1_complete}>
+                <lightning-button variant="brand" label="Next" data-id="Step1"  title="Next" onclick={handleClick}
+                class="slds-m-left_x-small"></lightning-button>
+            </template> 
+            <template if:true={Step1_complete}>
+                <lightning-button variant="brand" data-id="Step2" onclick={handleClick} label="Save" title="Next"
+                class="slds-m-left_x-small"></lightning-button>
+            </template> 
+                 </footer>
+       
+       </div>
+    </section>
+    <div class="slds-backdrop slds-backdrop_open"></div>
+ </template>
+ <!-- modal end -->
+
+</template>
